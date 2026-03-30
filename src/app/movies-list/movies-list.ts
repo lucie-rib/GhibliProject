@@ -10,7 +10,7 @@ import { Data } from '../data';
 })
 export class MoviesList {
   dataService = inject(Data);
-  @Input() movies: any[] = [];
+  movies: any[] = [];
   selectedMovie: string = '';
 
   ngOnInit() : void { 
