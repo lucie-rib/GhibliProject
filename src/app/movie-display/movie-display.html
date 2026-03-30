@@ -1,0 +1,7 @@
+<div class="d-flex flex-column align-items-center">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center"><img class="grows" [src]="movie.img" [alt]="movie.name" height="200px" /></div>
+        <div class="col-12 d-flex justify-content-center mt-2">{{ movie.name }}</div>
+    </div>
+    <button class="btn btn-primary mt-3" (click)="onMovieClicked()">Voir la description</button>
+</div>
