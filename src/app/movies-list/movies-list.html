@@ -1,1 +1,9 @@
-<p>movies-list works!</p>
+<div>
+  <div class="row">
+    @for (movie of movies; track movie.id) {
+        <div class="col-12 d-flex justify-content-center">
+            <app-movie-display [movie]="movie" (movieClicked)="onMovieClicked($event)"></app-movie-display>
+        </div>
+    }
+  </div>
+</div>

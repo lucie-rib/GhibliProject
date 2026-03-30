@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { MoviesList } from '../movies-list/movies-list';
 
 @Component({
   selector: 'app-body',
-  imports: [],
+  imports: [MoviesList],
   templateUrl: './body.html',
   styleUrl: './body.css',
 })
