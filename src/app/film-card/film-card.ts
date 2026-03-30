@@ -8,9 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class FilmCard {
   isDescriptionOpen : boolean = false
-  @Input() film_title : string = "title"
-  @Input() film_description : string = "this a despcrition blablabla"
-  @Input() film_image : string ="/placeholder_film.png"
+  @Input() film_title : string = ""
+  @Input() film_description : string = ""
+  @Input() film_image : string =""
 
   openDescription() {
     this.isDescriptionOpen = true
