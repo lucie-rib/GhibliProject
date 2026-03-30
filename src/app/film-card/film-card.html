@@ -9,12 +9,12 @@
 
 @if (isDescriptionOpen) {
   <div class="overlay" (click)="closeDescription()">
-    <article class="modal" (click)="$event.stopPropagation()">
-      <div class="modal__media">
+    <article class="film-modal" (click)="$event.stopPropagation()">
+      <div class="film-modal__media">
         <img [src]="film_image" [alt]="film_title" />
         <button
           type="button"
-          class="modal__close"
+          class="film-modal__close"
           (click)="closeDescription()"
           aria-label="Fermer la description"
         >
@@ -22,7 +22,7 @@
         </button>
       </div>
 
-      <div class="modal__body">
+      <div class="film-modal__body">
         <h3>{{ film_title }}</h3>
         <h3>{{ film_title_jp }}</h3>
         <p><strong>Director:</strong> {{ film_director }}</p>
