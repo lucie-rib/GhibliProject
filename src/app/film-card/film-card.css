@@ -1,0 +1,210 @@
+.film_card {
+  width: min(86vw, 340px);
+  padding: 0.25rem;
+}
+
+.film_card_image {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow:
+    0 18px 34px rgba(10, 20, 58, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.44);
+  backdrop-filter: blur(12px) saturate(145%);
+  -webkit-backdrop-filter: blur(12px) saturate(145%);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.film_card_image:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 24px 44px rgba(10, 20, 58, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
+}
+
+.film_card_image::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 201, 134, 0.48) 0%,
+    rgba(141, 226, 255, 0.28) 50%,
+    rgba(112, 81, 255, 0.06) 100%
+  );
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.film_card_image img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.film_card_text {
+  margin-top: 0.95rem;
+  display: grid;
+  gap: 0.55rem;
+  color: #f6f8ff;
+}
+
+.film_card_text p {
+  margin: 0;
+  line-height: 1.45;
+  font-size: clamp(1.06rem, 1.3vw, 1.18rem);
+  font-weight: 800;
+  letter-spacing: 0.25px;
+  color: #272525;
+  text-shadow: 0 2px 16px rgba(8, 19, 58, 0.38);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 999;
+  background: rgba(15, 22, 48, 0.32);
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+  animation: overlay-fade 180ms ease;
+}
+
+.modal {
+  width: min(90vw, 430px);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(255, 255, 255, 0.58)
+  );
+  box-shadow:
+    0 30px 60px rgba(15, 22, 50, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  animation: modal-rise 220ms ease;
+}
+
+.modal__media {
+  position: relative;
+  height: 170px;
+  overflow: hidden;
+}
+
+.modal__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: contrast(1.03) saturate(1.05);
+}
+
+.modal__media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  background: linear-gradient(to top, rgba(14, 18, 41, 0.45), rgba(14, 18, 41, 0));
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(15, 18, 40, 0.55);
+  color: #f6f8ff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal__close:hover {
+  background: rgba(15, 18, 40, 0.75);
+}
+
+.modal__body {
+  padding: 1.15rem 1.1rem 1.3rem;
+}
+
+.modal__body h3 {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.12;
+  color: #151b3d;
+  letter-spacing: 0.2px;
+}
+
+.modal__body p {
+  margin: 0.8rem 0 0;
+  color: #293152;
+  line-height: 1.6;
+  font-size: 0.97rem;
+}
+
+@keyframes overlay-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .film_card {
+    width: min(92vw, 340px);
+  }
+
+  .film_card_image img {
+    height: 320px;
+  }
+
+  .modal {
+    width: min(92vw, 430px);
+    border-radius: 18px;
+  }
+
+  .modal__media {
+    height: 152px;
+  }
+
+  .modal__body h3 {
+    font-size: 1.36rem;
+  }
+}
