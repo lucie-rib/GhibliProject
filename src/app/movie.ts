@@ -13,4 +13,5 @@ export interface Movie {
     locations: string[];
     vehicles: string[];
     url: string;
+    image: string; 
 }
