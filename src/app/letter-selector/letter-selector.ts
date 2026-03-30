@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-letter-selector',
@@ -7,11 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './letter-selector.css',
 })
 export class LetterSelector {
+  @Output() emitted_letter  = new EventEmitter<string>()
+  
   current_letter : string = ""
-  letter_array : Array<string> = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+  letter_array = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+
+
+
 
   letter_click(letter : string){
     this.current_letter = letter
-    console.log(this.current_letter)
+    this.emitted_letter.emit(this.current_letter)
   }
 }

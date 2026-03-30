@@ -5,8 +5,9 @@
   --sage-700: #406050;
   --cream: #f7f5ef;
 
-  width: 100%;
-  max-width: 900px;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
   padding: 0.2rem 0.1rem;
   display: flex;
   flex-wrap: nowrap;

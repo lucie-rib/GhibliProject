@@ -1,7 +1,7 @@
 <section class="body-section">
   <h2 class="text-center mb-4 titre">All movies</h2>
-
+  <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
   <div class="content-wrapper d-flex justify-content-center align-items-center">
-    <app-movies-list></app-movies-list>
+    <app-movies-list [selected_letter]="selectedLetter"></app-movies-list>
   </div>
 </section>

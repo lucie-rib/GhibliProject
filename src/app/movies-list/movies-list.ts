@@ -9,8 +9,10 @@ import { Data } from '../data';
   styleUrl: './movies-list.css',
 })
 export class MoviesList {
+  @Input() selected_letter : string = ""
+
   dataService = inject(Data);
-  @Input() movies: any[] = [];
+  movies: any[] = [];
   selectedMovie: string = '';
 
   ngOnInit() : void { 
@@ -22,6 +24,20 @@ export class MoviesList {
       })
       console.log('3 - ngOnInit finished');
     }
+  }
+
+  selectedMovies(){
+    if (!this.selected_letter){
+      return this.movies;
+    }
+
+    if(this.selected_letter == 'All'){
+      return this.movies;
+    }
+
+    return this.movies.filter((movie) => {
+      return movie.title?.toUpperCase().startsWith(this.selected_letter)
+    })
   }
   
   onSelected(movieName: string) {

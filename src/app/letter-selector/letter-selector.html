@@ -1,5 +1,16 @@
 <div class="column">
-    @for(letter of letter_array; track letter ){
-        <button (click)="letter_click(letter)" [class.active]="current_letter === letter">{{letter}}</button>
-    }
+
+  @for (letter of letter_array; track letter) {
+    <button
+      (click)="letter_click(letter)"
+      [class.active]="current_letter === letter"
+    >
+      {{ letter }}
+    </button>
+  }
+
+
+  <span class="sep">-</span>
+  <button (click)="letter_click('All')" [class.active]="false">All</button>
+  
 </div>
