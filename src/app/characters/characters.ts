@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { Data } from '../data';
-import { CharactersList } from '../characters-list/characters-list';
 
 @Component({
   selector: 'app-characters',
-  imports: [CharactersList, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './characters.html',
   styleUrl: './characters.css',
 })

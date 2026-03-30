@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { Data } from '../data';
-import { LocationsList } from '../locations-list/locations-list';
 
 @Component({
   selector: 'app-locations',
-  imports: [LocationsList, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './locations.html',
   styleUrl: './locations.css',
 })
