@@ -1,0 +1,97 @@
+
+.about-section {
+  background-color: #f0f7f4;
+  color: #333;
+}
+
+
+.fancy-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.fancy-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+
+.bg-ghibli-green {
+  background-color: #d1e7dd; 
+}
+
+.btn-ghibli-success {
+  background-color: #198754;
+  color: white;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.btn-ghibli-success:hover {
+  background-color: #157347;
+  color: white;
+}
+
+.totoro-container {
+  cursor: pointer; 
+}
+
+.totoro-sprite {
+  max-width: 380px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+
+.totoro-sprite:hover {
+  transform: scale(1.05);
+}
+
+
+.totoro-sprite.pat-pat-anim {
+  animation: totoroWobble 0.5s ease;
+}
+
+
+@keyframes totoroWobble {
+  0% { transform: scale(1.05) rotate(0deg); }
+  25% { transform: scale(1.05) rotate(5deg); }
+  50% { transform: scale(1.05) rotate(-5deg); }
+  75% { transform: scale(1.05) rotate(2deg); }
+  100% { transform: scale(1.05) rotate(0deg); }
+}
+
+
+.speech-bubble {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  opacity: 0;
+  pointer-events: none; 
+  
+
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px); 
+  transition: opacity 0.4s ease, transform 0.4s ease; 
+  min-width: 200px;
+}
+
+.speech-bubble.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(10px); 
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+
+.pat-counter {
+  font-size: 0.9rem;
+  font-style: italic;
+}

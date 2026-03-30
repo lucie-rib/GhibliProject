@@ -1,18 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { Data } from '../data';
-import { MoviesList } from '../movies-list/movies-list';
+import { LocationsList } from '../locations-list/locations-list';
 
 @Component({
-  selector: 'app-body',
-  imports: [MoviesList, ReactiveFormsModule],
-  templateUrl: './body.html',
-  styleUrl: './body.css',
+  selector: 'app-locations',
+  imports: [LocationsList, ReactiveFormsModule],
+  templateUrl: './locations.html',
+  styleUrl: './locations.css',
 })
-export class Body {
+export class Locations {
   dataService = inject(Data);
-  originalMovies: any[] = [];
-  filteredMovies: any[] = [];
+  originalLocations: any[] = [];
+  filteredLocations: any[] = [];
   searchGroup: FormGroup;
 
 
@@ -22,9 +22,9 @@ export class Body {
   });
 
   constructor() {
-    this.dataService.getMovies().subscribe(movies => {
-      this.originalMovies = movies;
-      this.filteredMovies = movies;
+    this.dataService.getLocations().subscribe(locations => {
+      this.originalLocations = locations;
+      this.filteredLocations = locations;
     });
 
     this.searchGroup = new FormGroup({
@@ -39,19 +39,22 @@ export class Body {
     const searchTerms = rawValue.split(' ').filter(term => term.length > 0);
 
     if (searchTerms.length === 0) {
-      this.filteredMovies = [...this.originalMovies];
+      this.filteredLocations = [...this.originalLocations];
       return;
     }
 
 
-    this.filteredMovies = this.originalMovies.filter(movie => {
-      const movieTitle = movie.title.toLowerCase();
-      return searchTerms.every(term => movieTitle.includes(term));
+    this.filteredLocations = this.originalLocations.filter(location => {
+      const locationName = location.name.toLowerCase();
+      return searchTerms.every(term => locationName.includes(term));
     });
   }
 
   reset() {
     this.searchGroup.reset();
-    this.filteredMovies = [...this.originalMovies];
+    this.filteredLocations = [...this.originalLocations];
   }
 }
+
+
+
