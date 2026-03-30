@@ -2,14 +2,17 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; 
 import { Data } from '../data';
 import { MoviesList } from '../movies-list/movies-list';
+import { LetterSelector } from '../letter-selector/letter-selector';
 
 @Component({
   selector: 'app-body',
-  imports: [MoviesList, ReactiveFormsModule],
+  imports: [MoviesList, LetterSelector, ReactiveFormsModule],
   templateUrl: './body.html',
   styleUrl: './body.css',
 })
 export class Body {
+  selectedLetter: string = '';
+
   dataService = inject(Data);
   originalMovies: any[] = [];
   filteredMovies: any[] = [];
@@ -54,4 +57,10 @@ export class Body {
     this.searchGroup.reset();
     this.filteredMovies = [...this.originalMovies];
   }
+
+   onLetterSelected(letter: string) {
+    this.selectedLetter = letter;
+    console.log('Lettre reçue:', letter);
+  }
+
 }
