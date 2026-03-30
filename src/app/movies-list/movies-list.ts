@@ -1,6 +1,6 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'; // 👈 Plus besoin de 'inject'
 import { MovieDisplay } from '../movie-display/movie-display';
-import { Data } from '../data';
+// 👈 Plus besoin d'importer 'Data'
 
 @Component({
   selector: 'app-movies-list',
@@ -9,21 +9,11 @@ import { Data } from '../data';
   styleUrl: './movies-list.css',
 })
 export class MoviesList {
-  dataService = inject(Data);
+  // C'est tout ce dont on a besoin : on attend la liste venant de Body
   @Input() movies: any[] = [];
+  
   selectedMovie: string = '';
 
-  ngOnInit() : void { 
-    if (this.movies.length === 0) {
-      console.log('1 - ngOnInit called');
-      this.dataService.getMovies().subscribe(movies => {
-        console.log('2 - Movies received from service');
-        this.movies = movies;
-      })
-      console.log('3 - ngOnInit finished');
-    }
-  }
-  
   onSelected(movieName: string) {
     this.selectedMovie = movieName;
   }
