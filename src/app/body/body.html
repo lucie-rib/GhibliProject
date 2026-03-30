@@ -1,6 +1,6 @@
 <section class="body-section">
   <h2 class="text-center mb-4 titre">All movies in the Studio Ghibli Collection</h2>
-
+    <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
     <div class="d-flex flex-column align-items-center mb-5">
       
       <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="w-100 mb-3" style="max-width: 600px;">
@@ -29,6 +29,6 @@
     </div>
 
     <div class="content-wrapper">
-      <app-movies-list [movies]="filteredMovies"></app-movies-list>
+      <app-movies-list [selected_letter]="selectedLetter" [movies]="filteredMovies"></app-movies-list>
     </div>
 </section>
