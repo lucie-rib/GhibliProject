@@ -1,0 +1,31 @@
+<div class="film_card">
+    <div class="film_card_image" (click)="openDescription()">
+        <img [src]="film_image" [alt]="film_title">
+    </div>
+    <div class="film_card_text">
+        <p>film title : {{film_title}}</p>
+    </div>
+</div>
+
+@if (isDescriptionOpen) {
+  <div class="overlay" (click)="closeDescription()">
+    <article class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__media">
+        <img [src]="film_image" [alt]="film_title" />
+        <button
+          type="button"
+          class="modal__close"
+          (click)="closeDescription()"
+          aria-label="Fermer la description"
+        >
+          X
+        </button>
+      </div>
+
+      <div class="modal__body">
+        <h3>{{ film_title }}</h3>
+        <p>{{ film_description }}</p>
+      </div>
+    </article>
+  </div>
+}
