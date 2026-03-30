@@ -1,12 +1,9 @@
 <div class="movie-item">
-  <div class="movie-poster">
-    <img [src]="movie.image" [alt]="movie.title" />
-  </div>
-
   <div class="movie-content">
-    <h2>{{ movie.title }}</h2>
-    <button class="movie-button" (click)="onMovieClicked()">
-      Voir la description
-    </button>
+    <app-film-card
+      [film_title]="movie.title"
+      [film_image]="movie.image"
+      [film_description]="movie.description"
+    ></app-film-card>
   </div>
 </div>

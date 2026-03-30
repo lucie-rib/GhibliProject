@@ -1,7 +1,7 @@
 <section class="movies-section">
   <div class="row">
     @for (movie of movies; track movie.id) {
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col d-flex justify-content-center">
             <app-movie-display [movie]="movie" (movieClicked)="onMovieClicked($event)"></app-movie-display>
         </div>
     }

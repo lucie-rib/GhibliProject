@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FilmCard } from '../film-card/film-card';
 
 @Component({
   selector: 'app-movie-display',
-  imports: [],
+  imports: [FilmCard],
   templateUrl: './movie-display.html',
   styleUrl: './movie-display.css',
 })
