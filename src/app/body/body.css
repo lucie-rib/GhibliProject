@@ -1,0 +1,49 @@
+.body-section {
+  min-height: 100%;
+  padding: 2.5rem 0 3rem;
+  background: linear-gradient(180deg, #fffdf8 0%, #f4f0e4 45%, #eef4e8 100%);
+}
+
+.content-wrapper {
+  width: 100%;
+}
+
+.titre {
+  margin: 0;
+  padding: 0 1rem;
+  text-align: center;
+  color: #2f4f4f;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .body-section {
+    padding: 1.75rem 0 2.25rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+}

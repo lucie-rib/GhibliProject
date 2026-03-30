@@ -1,7 +1,12 @@
-<div class="d-flex flex-column align-items-center">
-    <div class="row">
-        <div class="col-12 d-flex justify-content-center"></div>
-        <div class="col-12 d-flex justify-content-center mt-2">{{ movie.title }}</div>
-    </div>
-    <button class="btn btn-primary mt-3" (click)="onMovieClicked()">Voir la description</button>
+<div class="movie-item">
+  <div class="movie-poster">
+    <img [src]="movie.image" [alt]="movie.title" />
+  </div>
+
+  <div class="movie-content">
+    <h2>{{ movie.title }}</h2>
+    <button class="movie-button" (click)="onMovieClicked()">
+      Voir la description
+    </button>
+  </div>
 </div>
