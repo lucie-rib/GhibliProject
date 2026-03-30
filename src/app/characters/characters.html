@@ -1,0 +1,22 @@
+<form (ngSubmit)="submit()" [formGroup]="searchGroup" class="w-100 mb-3" style="max-width: 600px;">
+        <div class="input-group shadow-sm rounded-pill overflow-hidden border">
+          <input 
+            class="form-control border-0 py-3 px-4 bg-white text-dark" 
+            [formControl]="searchControl" 
+            placeholder="Research a Character..."
+          >
+          <button 
+            class="btn btn-dark px-4 fw-bold" 
+            type="submit" 
+            [disabled]="searchGroup.invalid">
+            Search
+          </button>
+        </div>
+      </form>
+
+      <button 
+        type="button" 
+        class="btn btn-sm btn-outline-secondary rounded-pill px-4" 
+        (click)="reset()">
+        Show all characters
+      </button>

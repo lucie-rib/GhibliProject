@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core'; 
 import { MovieDisplay } from '../movie-display/movie-display';
 import { Data } from '../data';
 
@@ -10,9 +10,10 @@ import { Data } from '../data';
 })
 export class MoviesList {
   @Input() selected_letter : string = ""
+  @Input() movies: any[] = [];
 
   dataService = inject(Data);
-  movies: any[] = [];
+  
   selectedMovie: string = '';
 
   ngOnInit() : void { 

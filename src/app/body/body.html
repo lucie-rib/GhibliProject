@@ -1,7 +1,34 @@
 <section class="body-section">
-  <h2 class="text-center mb-4 titre">All movies</h2>
-  <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
-  <div class="content-wrapper d-flex justify-content-center align-items-center">
-    <app-movies-list [selected_letter]="selectedLetter"></app-movies-list>
-  </div>
+  <h2 class="text-center mb-4 titre">All movies in the Studio Ghibli Collection</h2>
+    <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
+    <div class="d-flex flex-column align-items-center mb-5">
+      
+      <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="w-100 mb-3" style="max-width: 600px;">
+        <div class="input-group shadow-sm rounded-pill overflow-hidden border">
+          <input 
+            class="form-control border-0 py-3 px-4 bg-white text-dark" 
+            [formControl]="searchControl" 
+            placeholder="Research a film..."
+          >
+          <button 
+            class="btn btn-dark px-4 fw-bold" 
+            type="submit" 
+            [disabled]="searchGroup.invalid">
+            Search
+          </button>
+        </div>
+      </form>
+
+      <button 
+        type="button" 
+        class="btn btn-sm btn-outline-secondary rounded-pill px-4" 
+        (click)="reset()">
+        Show all movies
+      </button>
+
+    </div>
+
+    <div class="content-wrapper">
+      <app-movies-list [selected_letter]="selectedLetter" [movies]="filteredMovies"></app-movies-list>
+    </div>
 </section>
