@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core'; 
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, switchMap, forkJoin } from 'rxjs';
+import { Observable, map, switchMap, combineLatest, of } from 'rxjs'; // 👈 On importe combineLatest
 import { Character } from './character';
 import { Location } from './location';
 import { Movie } from './movie';
@@ -18,7 +18,6 @@ export class Data {
     return this.httpClient.get<any[]>("https://ghibliapi.vercel.app/films").pipe(
       switchMap((moviesArray: any[]) => {
         const requests = moviesArray.map((movie: any) => {
-          
           return this.httpClient.get<any>(movie.url).pipe(
             map((movieDetails: any) => {
               return {
@@ -41,48 +40,88 @@ export class Data {
             })
           );
         });
-        return forkJoin(requests);
+        
+ 
+        return combineLatest(requests); 
       })
     );
   }
 
   getCharacters(): Observable<Character[]> {
-    return this.httpClient.get<any>("https://ghibliapi.vercel.app/people").pipe(
-      map((peopleArray: any) => {
-        const newArray = peopleArray.map((character: any) => {
-          return {
-            id: character.id, 
-            name: character.name, 
-            gender: character.gender, 
-            age: character.age, 
-            eye_color: character.eye_color, 
-            hair_color: character.hair_color, 
-            films: character.films, 
-            species: character.species, 
-            url: character.url
-          };
+    return this.httpClient.get<any[]>("https://ghibliapi.vercel.app/people").pipe(
+      switchMap((peopleArray: any[]) => {
+        const characterRequests = peopleArray.map((character: any) => {
+          
+          const filmRequests = character.films.map((filmUrl: string) => {
+            return this.httpClient.get<any>(filmUrl).pipe(
+              map((filmDetails: any) => filmDetails.title) 
+            );
+          });
+          const films$ = filmRequests.length > 0 ? combineLatest(filmRequests) : of([]);
+
+          return films$.pipe(
+            map((filmTitles: any) => {
+              return {
+                id: character.id, 
+                name: character.name, 
+                gender: character.gender, 
+                age: character.age, 
+                eye_color: character.eye_color, 
+                hair_color: character.hair_color, 
+                species: character.species, 
+                url: character.url,
+                films: filmTitles 
+              } as Character;
+            })
+          );
         });
-        return newArray;
+        
+        return combineLatest(characterRequests);
       })
     );
   }
 
   getLocations(): Observable<Location[]> {
-    return this.httpClient.get<any>("https://ghibliapi.vercel.app/locations").pipe(
-      map((locationsArray: any) => {
-        const newArray = locationsArray.map((location: any) => {
-          return {
-            id: location.id, 
-            name: location.name, 
-            climate: location.climate, 
-            terrain: location.terrain, 
-            surface_water: location.surface_water, 
-            residents: location.residents, 
-            films: location.films, 
-            url: location.url
-          };
+    return this.httpClient.get<any[]>("https://ghibliapi.vercel.app/locations").pipe(
+      switchMap((locationsArray: any[]) => {
+        const locationRequests = locationsArray.map((location: any) => {
+          
+          const residentRequests = location.residents.map((residentUrl: string) => {
+            return this.httpClient.get<any>(residentUrl).pipe(
+              map((residentDetails: any) => residentDetails.name)
+            );
+          });
+
+          const filmRequests = location.films.map((filmUrl: string) => {
+            return this.httpClient.get<any>(filmUrl).pipe(
+              map((filmDetails: any) => filmDetails.title)
+            );
+          });
+
+   
+          const residents$ = residentRequests.length > 0 ? combineLatest(residentRequests) : of([]);
+          const films$ = filmRequests.length > 0 ? combineLatest(filmRequests) : of([]);
+
+          return combineLatest({
+            resolvedResidents: residents$,
+            resolvedFilms: films$
+          }).pipe(
+            map(({ resolvedResidents, resolvedFilms }: any) => {
+              return {
+                id: location.id, 
+                name: location.name, 
+                climate: location.climate, 
+                terrain: location.terrain, 
+                surface_water: location.surface_water, 
+                residents: resolvedResidents, 
+                films: resolvedFilms,         
+                url: location.url
+              } as Location;
+            })
+          );
         });
-        return newArray;
+        
+        return combineLatest(locationRequests);
       })
     );
   } 
