@@ -11,6 +11,10 @@ export class FilmCard {
   @Input() film_title : string = ""
   @Input() film_description : string = ""
   @Input() film_image : string =""
+  @Input() film_title_jp : string = ""
+  @Input() film_director : string = ""
+  @Input() film_release_date : string = ""
+  @Input() film_rate : string = ""
 
   openDescription() {
     this.isDescriptionOpen = true
