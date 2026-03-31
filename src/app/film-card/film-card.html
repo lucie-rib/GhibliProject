@@ -1,5 +1,5 @@
-<div class="film_card">
-    <div class="film_card_image" (click)="openDescription()">
+<div class="film_card" [class.film_card--landscape]="!!location_name">
+    <div class="film_card_image" [class.film_card_image--landscape]="!!location_name" (click)="openDescription()">
         <img [src]="film_image || '/placeholder_film.png'" [alt]="film_title || location_name || 'Card image'">
     </div>
     <div class="film_card_text">
