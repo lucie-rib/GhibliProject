@@ -1,1 +1,25 @@
-<p>characters-list works!</p>
+<section class="characters-section">
+  <div class="row">
+    @for (character of characters; track character.id) {
+        <div class="col d-flex justify-content-center mb-4">
+            <app-characters-display 
+              [character]="character" 
+              (characterClicked)="onCharacterClicked($event)">
+            </app-characters-display>
+        </div>
+    }
+  </div>
+
+  <div class="pagination-footer">
+    @if (isLoading) {
+      <div class="loader-container">
+        <div class="fancy-loader"></div>
+        <span><strong>Fetching Ghibli magic...</strong></span>
+      </div>
+    } @else {
+      <button class="btn-fancy-load" (click)="onLoadMore()">
+        <span class="btn-text">Discover More</span>
+      </button>
+    }
+  </div>
+</section>
