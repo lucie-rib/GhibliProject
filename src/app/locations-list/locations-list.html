@@ -1,1 +1,9 @@
-<p>locations-list works!</p>
+<section class="movies-section">
+  <div class="row">
+    @for (location of selectedLocations(); track location.id) {
+        <div class="col d-flex justify-content-center">
+            <app-locations-display [location]="location" (locationClicked)="onLocationClicked($event)"></app-locations-display>
+        </div>
+    }
+  </div>
+</section>

@@ -1,9 +1,9 @@
 <div class="film_card">
     <div class="film_card_image" (click)="openDescription()">
-        <img [src]="film_image" [alt]="film_title">
+        <img [src]="film_image || '/placeholder_film.png'" [alt]="film_title || location_name || 'Card image'">
     </div>
     <div class="film_card_text">
-        <p>{{film_title}}</p>
+        <p>{{ film_title || location_name || 'Untitled' }}</p>
     </div>
 </div>
 
@@ -11,7 +11,7 @@
   <div class="overlay" (click)="closeDescription()">
     <article class="film-modal" (click)="$event.stopPropagation()">
       <div class="film-modal__media">
-        <img [src]="film_image" [alt]="film_title" />
+        <img [src]="film_image || '/placeholder_film.png'" [alt]="film_title || location_name || 'Card image'" />
         <button
           type="button"
           class="film-modal__close"
@@ -23,12 +23,47 @@
       </div>
 
       <div class="film-modal__body">
-        <h3>{{ film_title }}</h3>
-        <h3>{{ film_title_jp }}</h3>
-        <p><strong>Director:</strong> {{ film_director }}</p>
-        <p><strong>Release Date:</strong> {{ film_release_date }}</p>
-        <p><strong>Rating:</strong> {{ film_rate }} / 100</p>
-        <p>{{ film_description }}</p>
+        <h3>{{ film_title || location_name || 'Untitled' }}</h3>
+
+        @if (film_title_jp) {
+          <h3>{{ film_title_jp }}</h3>
+        }
+
+        @if (film_director) {
+          <p><strong>Director:</strong> {{ film_director }}</p>
+        }
+
+        @if (film_release_date) {
+          <p><strong>Release Date:</strong> {{ film_release_date }}</p>
+        }
+
+        @if (film_rate) {
+          <p><strong>Rating:</strong> {{ film_rate }} / 100</p>
+        }
+
+        @if (location_climate) {
+          <p><strong>Climate:</strong> {{ location_climate }}</p>
+        }
+
+        @if (location_terrain) {
+          <p><strong>Terrain:</strong> {{ location_terrain }}</p>
+        }
+
+        @if (location_surface_water) {
+          <p><strong>Surface water:</strong> {{ location_surface_water }}</p>
+        }
+
+        @if (location_residents_count) {
+          <p><strong>Residents:</strong> {{ location_residents_count }}</p>
+        }
+
+        @if (location_films_count) {
+          <p><strong>Films linked:</strong> {{ location_films_count }}</p>
+        }
+
+        @if (film_description) {
+          <p>{{ film_description }}</p>
+        }
       </div>
     </article>
   </div>
