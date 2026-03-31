@@ -11,6 +11,16 @@
             placeholder="Research a film..."
           >
           <button 
+            type="button" 
+            class="clear-btn" 
+            (click)="reset()"
+            [disabled]="!searchControl.value.trim()"
+            aria-label="Clear search">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M5 5 L15 15 M15 5 L5 15"></path>
+            </svg>
+          </button>
+          <button 
             class="btn btn-dark px-4 fw-bold" 
             type="submit" 
             [disabled]="searchGroup.invalid">
@@ -19,12 +29,7 @@
         </div>
       </form>
 
-      <button 
-        type="button" 
-        class="btn btn-sm btn-outline-secondary rounded-pill px-4" 
-        (click)="reset()">
-        Show all movies
-      </button>
+      
 
     </div>
 
