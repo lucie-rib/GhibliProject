@@ -1,33 +1,123 @@
 <section class="tier-list-page">
   <h2 class="text-center mb-4 titre">Studio Ghibli Tier List</h2>
-  <h3 class="text-center mb-4 subtitle">Drag and drop the films into the tier you think they belong to !</h3>
   <div class="tier-board">
     <div class="tier-row tier-s">
       <div class="tier-label">S</div>
-      <div class="tier-dropzone"></div>
+      <div
+        class="tier-dropzone"
+        cdkDropList
+        id="tierS"
+        [cdkDropListData]="S_line"
+        [cdkDropListConnectedTo]="connectedDropLists"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (movie of S_line; track movie.id) {
+          <app-card-tierlist
+            [movie_id]="movie.id"
+            [movie_name]="movie.title || movie.name"
+            [imageUrl]="movie.image || '/placeholder_film.png'"
+            [dragData]="movie"
+          ></app-card-tierlist>
+        }
+      </div>
     </div>
 
     <div class="tier-row tier-a">
       <div class="tier-label">A</div>
-      <div class="tier-dropzone"></div>
+      <div
+        class="tier-dropzone"
+        cdkDropList
+        id="tierA"
+        [cdkDropListData]="A_line"
+        [cdkDropListConnectedTo]="connectedDropLists"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (movie of A_line; track movie.id) {
+          <app-card-tierlist
+            [movie_id]="movie.id"
+            [movie_name]="movie.title || movie.name"
+            [imageUrl]="movie.image || '/placeholder_film.png'"
+            [dragData]="movie"
+          ></app-card-tierlist>
+        }
+      </div>
     </div>
 
     <div class="tier-row tier-b">
       <div class="tier-label">B</div>
-      <div class="tier-dropzone"></div>
+      <div
+        class="tier-dropzone"
+        cdkDropList
+        id="tierB"
+        [cdkDropListData]="B_line"
+        [cdkDropListConnectedTo]="connectedDropLists"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (movie of B_line; track movie.id) {
+          <app-card-tierlist
+            [movie_id]="movie.id"
+            [movie_name]="movie.title || movie.name"
+            [imageUrl]="movie.image || '/placeholder_film.png'"
+            [dragData]="movie"
+          ></app-card-tierlist>
+        }
+      </div>
     </div>
 
     <div class="tier-row tier-c">
       <div class="tier-label">C</div>
-      <div class="tier-dropzone"></div>
+      <div
+        class="tier-dropzone"
+        cdkDropList
+        id="tierC"
+        [cdkDropListData]="C_line"
+        [cdkDropListConnectedTo]="connectedDropLists"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (movie of C_line; track movie.id) {
+          <app-card-tierlist
+            [movie_id]="movie.id"
+            [movie_name]="movie.title || movie.name"
+            [imageUrl]="movie.image || '/placeholder_film.png'"
+            [dragData]="movie"
+          ></app-card-tierlist>
+        }
+      </div>
     </div>
 
     <div class="tier-row tier-d">
       <div class="tier-label">D</div>
-      <div class="tier-dropzone"></div>
+      <div
+        class="tier-dropzone"
+        cdkDropList
+        id="tierD"
+        [cdkDropListData]="D_line"
+        [cdkDropListConnectedTo]="connectedDropLists"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (movie of D_line; track movie.id) {
+          <app-card-tierlist
+            [movie_id]="movie.id"
+            [movie_name]="movie.title || movie.name"
+            [imageUrl]="movie.image || '/placeholder_film.png'"
+            [dragData]="movie"
+          ></app-card-tierlist>
+        }
+      </div>
     </div>
   </div>
-  <app-carousel-card [movies]="movies"></app-carousel-card>
+
+  <app-carousel-card
+    [movies]="movies"
+    cdkDropList
+    id="poolList"
+    [cdkDropListData]="movies"
+    [cdkDropListConnectedTo]="connectedDropLists"
+    [cdkDropListSortingDisabled]="true"
+    (cdkDropListDropped)="drop($event)"
+  ></app-carousel-card>
+    <h3 class="text-center mb-4 subtitle">Drag and drop the films into the tier you think they belong to !</h3>
+
 </section>
 
 

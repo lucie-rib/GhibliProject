@@ -2,13 +2,13 @@
   position: relative;
   width: 100%;
   max-width: none;
-  margin: 1.75rem auto 0;
-  padding-inline: 1rem;
+  margin: 1rem auto 0;
+  padding-inline: 0.65rem;
 }
 
 .fan-stage {
   position: relative;
-  height: 290px;
+  height: 235px;
   overflow: hidden;
   touch-action: pan-y;
 }
@@ -16,9 +16,9 @@
 .fan-card {
   position: absolute;
   left: 50%;
-  top: 14px;
+  top: 10px;
   transform-origin: bottom center;
-  margin-left: -46px;
+  margin-left: -40px;
   cursor: pointer;
   will-change: transform, opacity;
   transition:
@@ -32,7 +32,7 @@
 }
 
 .fan-card.is-hovered {
-  filter: drop-shadow(0 14px 18px rgba(16, 24, 40, 0.28));
+  filter: drop-shadow(0 10px 14px rgba(16, 24, 40, 0.26));
 }
 
 .carousel-nav {
@@ -40,25 +40,25 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 220;
-  height: 48px;
-  width: 48px;
+  height: 42px;
+  width: 42px;
   border-radius: 999px;
-  border: 1px solid rgba(35, 52, 74, 0.28);
+  border: 1px solid rgba(35, 52, 74, 0.25);
   background: #ffffff;
   color: #24344a;
-  font-size: 1.45rem;
+  font-size: 1.2rem;
   line-height: 1;
   display: grid;
   place-items: center;
-  box-shadow: 0 6px 16px rgba(19, 30, 46, 0.14);
+  box-shadow: 0 4px 12px rgba(19, 30, 46, 0.12);
 }
 
 .carousel-nav.left {
-  left: clamp(0.2rem, 1vw, 0.8rem);
+  left: 0.15rem;
 }
 
 .carousel-nav.right {
-  right: clamp(0.2rem, 1vw, 0.8rem);
+  right: 0.15rem;
 }
 
 .carousel-nav:hover {
@@ -67,22 +67,22 @@
 
 @media (max-width: 900px) {
   .fan-stage {
-    height: 250px;
+    height: 212px;
   }
 
   .fan-card {
-    margin-left: -38px;
+    margin-left: -35px;
   }
 }
 
 @media (max-width: 680px) {
   .carousel-nav {
-    height: 38px;
-    width: 38px;
-    font-size: 1.1rem;
+    height: 34px;
+    width: 34px;
+    font-size: 1rem;
   }
 
   .fan-stage {
-    height: 210px;
+    height: 190px;
   }
 }
