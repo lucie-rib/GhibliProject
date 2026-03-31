@@ -1,0 +1,90 @@
+.movies-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2rem 1.25rem;
+  align-items: start;
+}
+
+.col {
+  width: 100%;
+  grid-column: span 2;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.col app-locations-display {
+  display: block;
+  width: 100%;
+}
+
+/* Centre les 2 derniers items quand ils sont seuls sur la derniere ligne */
+.row > .col:nth-last-child(2):nth-child(5n + 1) {
+  grid-column: 4 / span 2;
+}
+
+.row > .col:last-child:nth-child(5n + 2) {
+  grid-column: 6 / span 2;
+}
+
+.description {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .row {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .row > .col:nth-last-child(2):nth-child(5n + 1),
+  .row > .col:last-child:nth-child(5n + 2) {
+    grid-column: auto;
+  }
+
+  .row > .col:nth-last-child(2):nth-child(4n + 1) {
+    grid-column: 3 / span 2;
+  }
+
+  .row > .col:last-child:nth-child(4n + 2) {
+    grid-column: 5 / span 2;
+  }
+}
+
+@media (max-width: 992px) {
+  .row {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .row > .col:nth-last-child(2):nth-child(4n + 1),
+  .row > .col:last-child:nth-child(4n + 2) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .movies-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

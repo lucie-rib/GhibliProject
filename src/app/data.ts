@@ -76,12 +76,31 @@ export class Data {
     return this.httpClient.get<any[]>("https://ghibliapi.vercel.app/locations").pipe(
       switchMap((locationsArray: any[]) => {
         const locationRequests = locationsArray.map((location: any) => {
-          const residents$ = location.residents.length > 0 
-            ? combineLatest(location.residents.map((url: string) => this.httpClient.get<any>(url).pipe(map((r: any) => r.name), catchError(() => of('Unknown')))))
-            : of([]);
-          const films$ = location.films.length > 0 
-            ? combineLatest(location.films.map((url: string) => this.httpClient.get<any>(url).pipe(map((f: any) => f.title), catchError(() => of('Unknown')))))
-            : of([]);
+          const validResidentUrls = (location.residents ?? []).filter(
+            (residentUrl: string) =>
+              typeof residentUrl === 'string' && residentUrl.startsWith('http')
+          );
+
+          const residentRequests = validResidentUrls.map((residentUrl: string) => {
+            return this.httpClient.get<any>(residentUrl).pipe(
+              map((residentDetails: any) => residentDetails.name)
+            );
+          });
+
+          const validFilmUrls = (location.films ?? []).filter(
+            (filmUrl: string) =>
+              typeof filmUrl === 'string' && filmUrl.startsWith('http')
+          );
+
+          const filmRequests = validFilmUrls.map((filmUrl: string) => {
+            return this.httpClient.get<any>(filmUrl).pipe(
+              map((filmDetails: any) => filmDetails.title)
+            );
+          });
+
+   
+          const residents$ = residentRequests.length > 0 ? combineLatest(residentRequests) : of([]);
+          const films$ = filmRequests.length > 0 ? combineLatest(filmRequests) : of([]);
 
           return combineLatest({ residents: residents$, films: films$ }).pipe(
             map(({ residents, films }) => ({ ...location, residents, films } as Location))
