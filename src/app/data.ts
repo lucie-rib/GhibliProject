@@ -4,6 +4,7 @@ import { Observable, map, switchMap, combineLatest, of, catchError, shareReplay 
 import { Character } from './character';
 import { Location } from './location';
 import { Movie } from './movie';
+import { CharacterImagesData } from './character-images-data';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { Movie } from './movie';
 export class Data {
   
   httpClient = inject(HttpClient);
+  characterImagesData = inject(CharacterImagesData);
 
   private allFilms$ = this.httpClient.get<any[]>('https://ghibliapi.vercel.app/films').pipe(shareReplay(1));
   private allSpecies$ = this.httpClient.get<any[]>('https://ghibliapi.vercel.app/species').pipe(shareReplay(1));
@@ -44,8 +46,9 @@ export class Data {
       films: this.allFilms$,
       species: this.allSpecies$
     }).pipe(
-      map(({ films, species }) => {
-        return peopleArray.map(character => {
+      switchMap(({ films, species }) => {
+        
+        const characterRequests = peopleArray.map(character => {
           let speciesName = 'Unknown';
           if (character.species && character.species.startsWith('http')) {
             const foundSpecies = species.find(s => character.species.includes(s.id));
@@ -55,19 +58,32 @@ export class Data {
           const charFilms = character.films || [];
           const matchedFilms = films.filter(f => charFilms.some((url: string) => url.includes(f.id)));
           
-          return {
-            id: character.id,
-            name: character.name,
-            gender: character.gender,
-            age: character.age,
-            eye_color: character.eye_color,
-            hair_color: character.hair_color,
-            species: speciesName, 
-            url: character.url,
-            films: matchedFilms.map(f => f.title),
-            images: matchedFilms.map(f => f.image).filter(img => !!img)
-          } as Character;
+          return this.characterImagesData.getCharacterImage(character.name).pipe(
+            map((fandomImageUrl: string | null) => {
+              
+              // On récupère les images des films au cas où
+              const movieImages = matchedFilms.map(f => f.image).filter(img => !!img);
+              
+              // Si Fandom a trouvé une image, on la met dans un tableau, sinon on utilise les images des films
+              const finalImages = fandomImageUrl ? [fandomImageUrl] : movieImages;
+
+              return {
+                id: character.id,
+                name: character.name,
+                gender: character.gender,
+                age: character.age,
+                eye_color: character.eye_color,
+                hair_color: character.hair_color,
+                species: speciesName, 
+                url: character.url,
+                films: matchedFilms.map(f => f.title),
+                images: finalImages
+              } as Character;
+            })
+          );
         });
+
+        return combineLatest(characterRequests);
       })
     );
   }
@@ -98,7 +114,6 @@ export class Data {
             );
           });
 
-   
           const residents$ = residentRequests.length > 0 ? combineLatest(residentRequests) : of([]);
           const films$ = filmRequests.length > 0 ? combineLatest(filmRequests) : of([]);
 
