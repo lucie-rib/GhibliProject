@@ -1,59 +1,85 @@
-# GhibliProject
+# **🍃 GhibliProject - Studio Ghibli Explorer**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.3.
+**Bienvenue dans le GhibliProject**, une application web immersive développée avec **Angular**.  
+Ce projet permet d'explorer l'univers enchanté du **Studio Ghibli**, de consulter les détails des **films**, des **personnages** et des **lieux**, tout en offrant une expérience interactive.
 
-## Development server
+## **🚀 Installation et Démarrage**
 
-To start a local development server, run:
+Suivez ces étapes pour lancer le projet localement :
+
+### **1. Se déplacer dans le répertoire du projet**
+
+```bash
+cd GhibliProject
+```
+
+### **2. Installer les dépendances Node**
+
+```bash
+npm install
+```
+
+### **3. Installer Bootstrap**
+
+```bash
+npm install bootstrap
+```
+
+### **4. Installer `@angular/cdk`**
+
+```bash
+ng add @angular/cdk
+```
+
+### **5. Lancer le serveur de développement**
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### **6. Accéder à l'application**
 
-## Code scaffolding
+Ouvrez votre navigateur à l'adresse suivante :  
+`http://localhost:4200`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## **🎨 Fonctionnalités Principales**
 
-```bash
-ng generate component component-name
-```
+L'application est découpée en plusieurs modules intuitifs :
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### **🏠 Page d'accueil (Home)**
 
-```bash
-ng generate --help
-```
+**Catalogue complet :** retrouvez l'intégralité de la filmographie du Studio Ghibli.  
+**Détails interactifs :** cliquez sur un film pour ouvrir une pop-up affichant les informations détaillées.  
+**Navigation fluide :** recherche via une barre dédiée ou tri par ordre alphabétique.
 
-## Building
+### **👥 Characters (Personnages)**
 
-To build the project run:
+**Galerie de cartes :** une présentation visuelle de tous les personnages iconiques via des cards.  
+**Focus :** chaque carte ouvre une pop-up contenant les caractéristiques du personnage.  
+**Recherche :** système de filtrage par texte et tri alphabétique inclus.
 
-```bash
-ng build
-```
+### **📍 Locations (Lieux)**
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+**Exploration :** découvrez les lieux emblématiques trouvables dans les différents films.  
+**Pop-ups :** visualisation des détails de chaque lieu via un système de cards interactives.  
+**Navigation :** recherche par barre et ordre alphabétique également disponibles.
 
-## Running unit tests
+### **🏆 TierList**
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+**Expérience interactive :** classez les films selon vos préférences grâce à un système de **Drag & Drop**.  
+**Système de rangs :** placez vos films sur la ligne souhaitée, du rang **S** au rang **D**.
 
-```bash
-ng test
-```
+### **ℹ️ About (À propos)**
 
-## Running end-to-end tests
+**Contexte :** présentation du cadre de ce projet réalisé pour notre cours de Webdev en Angular.  
+**Culture :** une brève introduction à l'histoire et à l'héritage du Studio Ghibli.
 
-For end-to-end (e2e) testing, run:
+## **🛠️ Technologies Utilisées**
 
-```bash
-ng e2e
-```
+- **Framework :** Angular
+- **Style :** Bootstrap pour le responsive design
+- **Langage :** TypeScript, HTML, CSS
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## **📝 Auteurs**
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Projet réalisé dans le cadre d'un module de développement Web.
