@@ -63,6 +63,8 @@
   inset: 0;
   display: grid;
   place-items: center;
+  padding: clamp(4.5rem, 8vh, 6rem) 1rem 1rem;
+  box-sizing: border-box;
   z-index: 999;
   background: rgba(15, 22, 48, 0.32);
   backdrop-filter: blur(12px) saturate(125%);
@@ -71,9 +73,13 @@
 }
 
 .film-modal {
-  width: min(90vw, 430px);
+  width: min(92vw, clamp(430px, 58vw, 720px));
+  max-height: 100%;
   border-radius: 22px;
-  overflow: hidden;
+  overflow: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   border: 1px solid rgba(255, 255, 255, 0.42);
   background: linear-gradient(
     165deg,
@@ -88,7 +94,8 @@
 
 .film-modal__media {
   position: relative;
-  height: 170px;
+  height: clamp(140px, 22vh, 170px);
+  flex-shrink: 0;
   overflow: hidden;
 }
 
@@ -131,6 +138,12 @@
 
 .film-modal__body {
   padding: 1.15rem 1.1rem 1.3rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-break: break-word;
+  scrollbar-gutter: stable;
 }
 
 .film-modal__body h3 {
@@ -165,24 +178,41 @@
 }
 
 @media (max-width: 480px) {
-  .film_card {
-    width: 100%;
-  }
-
-  .film_card_image img {
-    height: 320px;
+  .overlay {
+    padding: 5rem 0.75rem 0.75rem;
+    align-items: center;
   }
 
   .film-modal {
-    width: min(92vw, 430px);
+    width: 100%;
     border-radius: 18px;
   }
 
   .film-modal__media {
-    height: 152px;
+    height: clamp(120px, 20vh, 152px);
+  }
+
+  .film-modal__body {
+    padding: 1rem;
   }
 
   .film-modal__body h3 {
     font-size: 1.36rem;
+    line-height: 1.18;
+  }
+
+  .film-modal__body p {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 700px) {
+  .film-modal {
+    width: min(94vw, 780px);
+  }
+
+  .film-modal__media {
+    height: clamp(130px, 20vh, 170px);
   }
 }
