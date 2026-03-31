@@ -2,10 +2,10 @@
   <div class="movie-content">
     <app-film-card
       [film_image]="locationImageUrl"
-      [location_name]="location.name"
-      [location_climate]="location.climate"
-      [location_terrain]="location.terrain"
-      [location_surface_water]="location.surface_water"
+      [location_name]="sanitizeLocationField(location.name)"
+      [location_climate]="sanitizeLocationField(location.climate)"
+      [location_terrain]="sanitizeLocationField(location.terrain)"
+      [location_surface_water]="sanitizeLocationField(location.surface_water)"
       [location_residents_count]="'' + (location.residents?.length ?? 0)"
       [location_films_count]="'' + (location.films?.length ?? 0)"
     ></app-film-card>
