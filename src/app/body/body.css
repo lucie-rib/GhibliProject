@@ -25,6 +25,11 @@
   font-size: 0.95rem;
 }
 
+.search-field:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .titre {
   margin: 0;
   padding: 0 1rem;
