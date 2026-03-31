@@ -1,0 +1,30 @@
+
+<!-- Ce composant est générer par Chagpt a des fin stylisitque, ne fait pas parti du projet-->
+
+<section class="carousel-shell">
+  <button type="button" class="carousel-nav left" (click)="prev()" aria-label="Previous films">&larr;</button>
+
+  <div class="fan-stage" (wheel)="onWheel($event)">
+    @for (card of visibleCards; track trackVisibleCard($index, card)) {
+      <div
+        class="fan-card"
+        [class.is-hidden]="isCardHidden(card.offset)"
+        [class.is-hovered]="isCardHovered(card.index)"
+        [style.transform]="card.style.transform"
+        [style.z-index]="card.style.zIndex"
+        [style.opacity]="card.style.opacity"
+        (mouseenter)="setHovered(card.index)"
+        (mouseleave)="setHovered(null)"
+        (click)="select(card.index)"
+      >
+        <app-card-tierlist
+          [movie_id]="card.movie.id"
+          [movie_name]="card.movie.title || card.movie.name"
+          [imageUrl]="card.movie.image || '/placeholder_film.png'"
+        ></app-card-tierlist>
+      </div>
+    }
+  </div>
+
+  <button type="button" class="carousel-nav right" (click)="next()" aria-label="Next films">&rarr;</button>
+</section>

@@ -1,14 +1,20 @@
-import { Component, inject } from '@angular/core';
-import { CardTierlist } from '../card-tierlist/card-tierlist';
+import { Component, inject, Input } from '@angular/core';
+import { CarouselCard } from '../carousel-card/carousel-card';
 import { Data } from '../data';
 
 @Component({
   selector: 'app-tier-list',
-  imports: [CardTierlist],
+  imports: [CarouselCard],
   templateUrl: './tier-list.html',
   styleUrl: './tier-list.css',
 })
 export class TierList {
+  
+  @Input() S_line: any[] = [];
+  @Input() A_line: any[] = [];
+  @Input() B_line: any[] = [];
+  @Input() C_line: any[] = [];
+  @Input() D_line: any[] = [];
   
   movies: any[] = [];
   dataService = inject(Data);

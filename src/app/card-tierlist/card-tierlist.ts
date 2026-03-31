@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Movie } from '../movie';
-
+import { CdkDrag } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-card-tierlist',
-  imports: [],
+  imports: [CdkDrag],
   templateUrl: './card-tierlist.html',
   styleUrl: './card-tierlist.css',
 })
