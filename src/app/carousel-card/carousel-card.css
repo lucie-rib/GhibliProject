@@ -1,0 +1,88 @@
+.carousel-shell {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 1.75rem auto 0;
+  padding-inline: 1rem;
+}
+
+.fan-stage {
+  position: relative;
+  height: 290px;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.fan-card {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  transform-origin: bottom center;
+  margin-left: -46px;
+  cursor: pointer;
+  will-change: transform, opacity;
+  transition:
+    transform 520ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 360ms ease-out,
+    filter 280ms ease-out;
+}
+
+.fan-card.is-hidden {
+  pointer-events: none;
+}
+
+.fan-card.is-hovered {
+  filter: drop-shadow(0 14px 18px rgba(16, 24, 40, 0.28));
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 220;
+  height: 48px;
+  width: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(35, 52, 74, 0.28);
+  background: #ffffff;
+  color: #24344a;
+  font-size: 1.45rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 16px rgba(19, 30, 46, 0.14);
+}
+
+.carousel-nav.left {
+  left: clamp(0.2rem, 1vw, 0.8rem);
+}
+
+.carousel-nav.right {
+  right: clamp(0.2rem, 1vw, 0.8rem);
+}
+
+.carousel-nav:hover {
+  background: #f4f7fc;
+}
+
+@media (max-width: 900px) {
+  .fan-stage {
+    height: 250px;
+  }
+
+  .fan-card {
+    margin-left: -38px;
+  }
+}
+
+@media (max-width: 680px) {
+  .carousel-nav {
+    height: 38px;
+    width: 38px;
+    font-size: 1.1rem;
+  }
+
+  .fan-stage {
+    height: 210px;
+  }
+}

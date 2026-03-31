@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { CardTierlist } from '../card-tierlist/card-tierlist';
+import { CarouselCard } from '../carousel-card/carousel-card';
 import { Data } from '../data';
 
 @Component({
   selector: 'app-tier-list',
-  imports: [CardTierlist],
+  imports: [CarouselCard],
   templateUrl: './tier-list.html',
   styleUrl: './tier-list.css',
 })
