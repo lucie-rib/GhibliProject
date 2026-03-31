@@ -85,14 +85,23 @@ export class Data {
     return this.httpClient.get<any[]>("https://ghibliapi.vercel.app/locations").pipe(
       switchMap((locationsArray: any[]) => {
         const locationRequests = locationsArray.map((location: any) => {
-          
-          const residentRequests = location.residents.map((residentUrl: string) => {
+          const validResidentUrls = (location.residents ?? []).filter(
+            (residentUrl: string) =>
+              typeof residentUrl === 'string' && residentUrl.startsWith('http')
+          );
+
+          const residentRequests = validResidentUrls.map((residentUrl: string) => {
             return this.httpClient.get<any>(residentUrl).pipe(
               map((residentDetails: any) => residentDetails.name)
             );
           });
 
-          const filmRequests = location.films.map((filmUrl: string) => {
+          const validFilmUrls = (location.films ?? []).filter(
+            (filmUrl: string) =>
+              typeof filmUrl === 'string' && filmUrl.startsWith('http')
+          );
+
+          const filmRequests = validFilmUrls.map((filmUrl: string) => {
             return this.httpClient.get<any>(filmUrl).pipe(
               map((filmDetails: any) => filmDetails.title)
             );

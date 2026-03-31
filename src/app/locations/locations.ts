@@ -1,23 +1,26 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'; 
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Data } from '../data';
+import { LocationsList } from '../locations-list/locations-list';
+import { LetterSelector } from '../letter-selector/letter-selector';
 
 @Component({
   selector: 'app-locations',
-  imports: [ReactiveFormsModule],
+  imports: [LocationsList, LetterSelector, ReactiveFormsModule],
   templateUrl: './locations.html',
   styleUrl: './locations.css',
 })
 export class Locations {
+  selectedLetter: string = '';
+
   dataService = inject(Data);
   originalLocations: any[] = [];
   filteredLocations: any[] = [];
   searchGroup: FormGroup;
 
-
-  searchControl = new FormControl<string>('', { 
-    validators: [Validators.minLength(2), Validators.required], 
-    nonNullable: true 
+  searchControl = new FormControl<string>('', {
+    validators: [Validators.minLength(2), Validators.required],
+    nonNullable: true,
   });
 
   constructor() {
@@ -33,15 +36,13 @@ export class Locations {
 
   submit() {
     const rawValue = this.searchControl.value.trim().toLowerCase();
-    
-  
+
     const searchTerms = rawValue.split(' ').filter(term => term.length > 0);
 
     if (searchTerms.length === 0) {
       this.filteredLocations = [...this.originalLocations];
       return;
     }
-
 
     this.filteredLocations = this.originalLocations.filter(location => {
       const locationName = location.name.toLowerCase();
@@ -53,7 +54,9 @@ export class Locations {
     this.searchGroup.reset();
     this.filteredLocations = [...this.originalLocations];
   }
+
+  onLetterSelected(letter: string) {
+    this.selectedLetter = letter;
+    console.log('Lettre reçue:', letter);
+  }
 }
-
-
-
