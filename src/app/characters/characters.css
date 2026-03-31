@@ -16,22 +16,9 @@
   display: block;
   width: min(100%, 400px);
   margin-bottom: 0.2rem;
-  margin-left: 0;
-  margin-right: auto;
-  padding: 0 1rem;
-}
-
-.search-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.65rem;
-  margin-bottom: 1.25rem;
-}
-
-.search-form--centered {
   margin-left: auto;
   margin-right: auto;
+  padding: 0 1rem;
 }
 
 .search-field {
@@ -93,10 +80,6 @@
   padding-bottom: 0.35rem;
 }
 
-.show-all-btn {
-  margin-bottom: 0;
-}
-
 .clear-btn:hover,
 .clear-btn:focus {
   color: #343a40;
@@ -127,10 +110,6 @@
 
   .content-wrapper {
     padding: 0 1rem;
-  }
-
-  .search-controls {
-    gap: 0.55rem;
   }
 
   .mb-4 {
