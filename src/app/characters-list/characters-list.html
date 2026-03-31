@@ -16,7 +16,7 @@
         <div class="fancy-loader"></div>
         <span><strong>Fetching Ghibli magic...</strong></span>
       </div>
-    } @else {
+    } @else if (hasMoreCharacters) {
       <button class="btn-fancy-load" (click)="onLoadMore()">
         <span class="btn-text">Discover More</span>
       </button>

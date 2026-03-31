@@ -13,6 +13,7 @@ import { CharactersDisplay } from '../characters-display/characters-display';
 export class CharactersList {
   @Input() characters: Character[] = []; 
   @Input() isLoading: boolean = false; 
+  @Input() hasMoreCharacters: boolean = true;
   @Output() characterSelected = new EventEmitter<string>();
   @Output() loadMore = new EventEmitter<void>(); 
 
