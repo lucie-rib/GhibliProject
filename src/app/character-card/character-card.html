@@ -1,0 +1,82 @@
+<div class="character-card" (click)="toggleDescription()" role="button" tabindex="0" title="Click to see details">
+  <div class="card-header">
+    <span class="species-badge">{{ character.species | titlecase }}</span>
+    <span class="gender-icon" [attr.data-gender]="character.gender.toLowerCase()">
+      @if (character.gender.toLowerCase() === 'female') { ♀️ }
+      @else if (character.gender.toLowerCase() === 'male') { ♂️ }
+      @else { 👤 }
+    </span>
+  </div>
+
+  <div class="card-body">
+    @if (character.images && character.images.length > 0) {
+      <div class="image-container">
+        <img [src]="character.images[0]" [alt]="character.name" class="character-image">
+      </div>
+    }
+    <h3 class="character-name">{{ character.name }}</h3>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn-details">View Details</button>
+  </div>
+</div>
+
+@if (isDescriptionOpen) {
+  <div class="overlay" (click)="toggleDescription()">
+    <article class="details-modal" (click)="$event.stopPropagation()">
+      <header class="modal-header">
+        <div>
+          <h2>{{ character.name }}</h2>
+          <p class="subtitle">{{ character.species | titlecase }} / {{ character.gender | titlecase }}</p>
+        </div>
+        <button type="button" class="close-button" (click)="toggleDescription()" aria-label="Fermer">
+          &times;
+        </button>
+      </header>
+
+      <div class="modal-body">
+        @if (character.images && character.images.length > 0) {
+          <div class="modal-image-container">
+            <img [src]="character.images[0]" [alt]="character.name" class="modal-character-image">
+          </div>
+        }
+
+        <section class="info-section">
+          <h3>Physique</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Age</span>
+              <span class="value">{{ character.age || 'Unknown' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Eyes</span>
+              <span class="value" [style.color]="character.eye_color.toLowerCase()">
+                {{ character.eye_color | titlecase }}
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="label">Hair</span>
+              <span class="value">
+                {{ character.hair_color | titlecase }}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section class="info-section">
+          <h3>Appears in</h3>
+          @if (character.films && character.films.length > 0) {
+            <ul class="films-list">
+              @for (filmTitle of character.films; track filmTitle) {
+                <li>{{ filmTitle }}</li>
+              }
+            </ul>
+          } @else {
+            <p class="no-data">No films recorded.</p>
+          }
+        </section>
+      </div>
+    </article>
+  </div>
+}

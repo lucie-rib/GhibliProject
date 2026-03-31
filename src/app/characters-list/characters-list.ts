@@ -1,9 +1,26 @@
-import { Component } from '@angular/core';
+
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Character } from '../character';
+import { CharactersDisplay } from '../characters-display/characters-display';
 
 @Component({
   selector: 'app-characters-list',
-  imports: [],
+  standalone: true,
+  imports: [CharactersDisplay],
   templateUrl: './characters-list.html',
   styleUrl: './characters-list.css',
 })
-export class CharactersList {}
+export class CharactersList {
+  @Input() characters: Character[] = []; 
+  @Input() isLoading: boolean = false; 
+  @Output() characterSelected = new EventEmitter<string>();
+  @Output() loadMore = new EventEmitter<void>(); 
+
+  onCharacterClicked(characterName: string) {
+    this.characterSelected.emit(characterName);
+  }
+
+  onLoadMore() {
+    this.loadMore.emit();
+  }
+}
