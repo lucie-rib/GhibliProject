@@ -10,6 +10,12 @@ import { Data } from '../data';
 })
 export class TierList {
   
+  @Input() S_line: any[] = [];
+  @Input() A_line: any[] = [];
+  @Input() B_line: any[] = [];
+  @Input() C_line: any[] = [];
+  @Input() D_line: any[] = [];
+  
   movies: any[] = [];
   dataService = inject(Data);
 

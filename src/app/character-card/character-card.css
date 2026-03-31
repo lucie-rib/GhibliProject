@@ -69,17 +69,23 @@
 }
 
 .image-container {
-  width: 100%;
-  height: 160px;
-  border-radius: 12px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
   overflow: hidden;
-  background: #f0f0f0;
+  background: linear-gradient(180deg, #f4f0e4 0%, #eef4e8 100%);
+  border: 6px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 10px 24px rgba(47, 79, 79, 0.14),
+    inset 0 0 0 1px rgba(47, 79, 79, 0.08);
+  flex-shrink: 0;
 }
 
 .character-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
 }
 
 .character-name {
@@ -88,6 +94,7 @@
   font-weight: 800;
   color: var(--primary-color);
   line-height: 1.2;
+  max-width: 100%;
 }
 
 .card-footer {
@@ -111,6 +118,13 @@
   background: var(--accent-color);
   border-color: var(--accent-color);
   color: white;
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 .overlay {
