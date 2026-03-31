@@ -38,6 +38,44 @@
   align-items: center;
 }
 
+.clear-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: #fff;
+  color: #6c757d;
+  line-height: 0;
+  padding: 0 1rem;
+  min-width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.clear-btn:hover,
+.clear-btn:focus {
+  color: #343a40;
+  background: #fff;
+  box-shadow: none;
+}
+
+.clear-btn:disabled {
+  display: none;
+  pointer-events: none;
+}
+
+.clear-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.clear-btn path {
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
 @media (max-width: 768px) {
   .body-section {
     padding: 1.75rem 0 2.25rem;
