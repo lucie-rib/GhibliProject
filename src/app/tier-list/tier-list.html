@@ -28,3 +28,9 @@
     </div>
   </div>
 </section>
+
+<section class="movie_list">
+@for (movie of movies; track movie.id){
+    <app-card-tierlist [movie_id]="movie.id" [movie_name]="movie.name" [imageUrl]="movie.image"></app-card-tierlist>
+}
+</section>
