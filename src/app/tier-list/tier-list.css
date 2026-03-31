@@ -1,0 +1,15 @@
+.movie_list {
+  width: min(1200px, 96vw);
+  margin: 0 auto;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.movie_list app-card-tierlist {
+  display: block;
+  flex: 0 0 auto;
+}
