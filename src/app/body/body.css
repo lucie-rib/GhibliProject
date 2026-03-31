@@ -6,6 +6,28 @@
 
 .content-wrapper {
   width: 100%;
+  max-width: 1200px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  margin-top: 2rem;
+}
+
+.search-form {
+  display: block;
+  width: min(100%, 400px);
+  margin-bottom: 0.2rem;
+  margin-left: 0;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+.search-field {
+  font-size: 0.95rem;
+}
+
+.search-field:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .titre {
@@ -45,12 +67,17 @@
   background: #fff;
   color: #6c757d;
   line-height: 0;
-  padding: 0 1rem;
-  min-width: 52px;
+  padding: 0 0.85rem;
+  min-width: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.search-submit {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
 }
 
 .clear-btn:hover,
@@ -79,6 +106,10 @@
 @media (max-width: 768px) {
   .body-section {
     padding: 1.75rem 0 2.25rem;
+  }
+
+  .content-wrapper {
+    padding: 0 1rem;
   }
 
   .mb-4 {
