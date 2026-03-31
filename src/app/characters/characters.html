@@ -1,5 +1,6 @@
 <section class="body-section">
   <h2 class="text-center mb-4 titre">All characters in the Studio Ghibli Collection</h2>
+  <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
 <div class="content-wrapper">
   <div class="search-controls">
     <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="search-form search-form--centered">
