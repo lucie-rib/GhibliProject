@@ -89,36 +89,79 @@ export class Data {
   }
 
   getLocations(): Observable<Location[]> {
+    const sanitizeLocationValue = (value: unknown): string => {
+      if (typeof value !== 'string') return 'unknown';
+      const trimmed = value.trim();
+      if (!trimmed || /\btodo\b/i.test(trimmed)) return 'unknown';
+      return trimmed;
+    };
+
     return this.httpClient.get<any[]>("https://ghibliapi.vercel.app/locations").pipe(
       switchMap((locationsArray: any[]) => {
         const locationRequests = locationsArray.map((location: any) => {
-          const validResidentUrls = (location.residents ?? []).filter(
+          const rawResidents = Array.isArray(location.residents) ? location.residents : [];
+          const rawFilms = Array.isArray(location.films) ? location.films : [];
+
+          const validResidentUrls = rawResidents.filter(
             (residentUrl: string) =>
               typeof residentUrl === 'string' && residentUrl.startsWith('http')
           );
 
-          const residentRequests = validResidentUrls.map((residentUrl: string) => {
+          const residentRequests: Observable<string>[] = validResidentUrls.map((residentUrl: string) => {
             return this.httpClient.get<any>(residentUrl).pipe(
-              map((residentDetails: any) => residentDetails.name)
+              map((residentDetails: any) => sanitizeLocationValue(residentDetails?.name))
             );
           });
 
-          const validFilmUrls = (location.films ?? []).filter(
+          const validFilmUrls = rawFilms.filter(
             (filmUrl: string) =>
               typeof filmUrl === 'string' && filmUrl.startsWith('http')
           );
 
-          const filmRequests = validFilmUrls.map((filmUrl: string) => {
+          const filmRequests: Observable<string>[] = validFilmUrls.map((filmUrl: string) => {
             return this.httpClient.get<any>(filmUrl).pipe(
-              map((filmDetails: any) => filmDetails.title)
+              map((filmDetails: any) => sanitizeLocationValue(filmDetails?.title))
             );
           });
 
-          const residents$ = residentRequests.length > 0 ? combineLatest(residentRequests) : of([]);
-          const films$ = filmRequests.length > 0 ? combineLatest(filmRequests) : of([]);
+          const residents$: Observable<string[]> =
+            residentRequests.length > 0 ? combineLatest(residentRequests) : of<string[]>([]);
+          const films$: Observable<string[]> =
+            filmRequests.length > 0 ? combineLatest(filmRequests) : of<string[]>([]);
 
           return combineLatest({ residents: residents$, films: films$ }).pipe(
-            map(({ residents, films }) => ({ ...location, residents, films } as Location))
+            map(({ residents, films }: { residents: string[]; films: string[] }) => {
+              const resolvedResidents =
+                residents.length > 0
+                  ? residents
+                  : rawResidents.some(
+                      (resident: unknown) =>
+                        typeof resident === 'string' && resident.trim().toUpperCase() === 'TODO'
+                    )
+                  ? ['unknown']
+                  : [];
+
+              const resolvedFilms =
+                films.length > 0
+                  ? films
+                  : rawFilms.some(
+                      (film: unknown) =>
+                        typeof film === 'string' && film.trim().toUpperCase() === 'TODO'
+                    )
+                  ? ['unknown']
+                  : [];
+
+              return {
+                id: sanitizeLocationValue(location.id),
+                name: sanitizeLocationValue(location.name),
+                climate: sanitizeLocationValue(location.climate),
+                terrain: sanitizeLocationValue(location.terrain),
+                surface_water: sanitizeLocationValue(location.surface_water),
+                residents: resolvedResidents,
+                films: resolvedFilms,
+                url: sanitizeLocationValue(location.url),
+              } as Location;
+            })
           );
         });
         return combineLatest(locationRequests) as Observable<Location[]>;

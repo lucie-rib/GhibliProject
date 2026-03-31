@@ -39,6 +39,17 @@ export class LocationsDisplay implements OnChanges {
   }
   //end
 
+  sanitizeLocationField(value: unknown): string {
+    if (typeof value !== 'string') {
+      return 'unknown';
+    }
+    const trimmed = value.trim();
+    if (!trimmed || /\btodo\b/i.test(trimmed)) {
+      return 'unknown';
+    }
+    return trimmed;
+  }
+
 
   onLocationClicked() {
     console.log('Location clicked:', this.location.name);
