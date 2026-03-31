@@ -6,6 +6,7 @@ export interface Character {
     eye_color: string;
     hair_color: string;
     films: string[];    
-    species: string; 
+    species: string;
+    images: string[];
     url: string;
 }
