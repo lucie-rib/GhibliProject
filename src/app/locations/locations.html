@@ -2,13 +2,13 @@
 <h2 class="text-center mb-4 titre">All Locations in the Studio Ghibli Collection</h2>
 <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
 
-  <div class="d-flex flex-column align-items-center mb-5">
-    <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="w-100 mb-3" style="max-width: 600px;">
+  <div class="content-wrapper">
+    <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="search-form">
       <div class="input-group shadow-sm rounded-pill overflow-hidden border">
         <input 
-          class="form-control border-0 py-3 px-4 bg-white text-dark" 
+          class="form-control border-0 py-2 px-4 bg-white text-dark search-field" 
           [formControl]="searchControl" 
-          placeholder="Research a film..."
+          placeholder="Research a location..."
         >
         <button 
           type="button" 
@@ -21,16 +21,13 @@
           </svg>
         </button>
         <button 
-          class="btn btn-dark px-4 fw-bold" 
+          class="btn btn-dark px-4 fw-bold search-submit" 
           type="submit" 
           [disabled]="searchGroup.invalid">
           Search
         </button>
       </div>
     </form>
-  </div>
-  
-  <div class="content-wrapper">
     <app-locations-list [selected_letter]="selectedLetter" [locations]="filteredLocations"></app-locations-list>
   </div>
 </section>
