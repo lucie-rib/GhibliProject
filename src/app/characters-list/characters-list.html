@@ -13,9 +13,15 @@
   <div class="pagination-footer">
     @if (isLoading) {
       <div class="loader-container">
-        <img src="/LoadingTotoro.webp" alt="Chargement Totoro" class="totoro-loader" />
-        <span><strong>Fetching Ghibli magic...</strong></span>
+        
+        <div class="chase-scene">
+          <img src="/LoadingTotoro.webp" alt="Chargement Totoro" class="totoro-loader" />
+          <img src="/LoadingCatBus.webp" alt="Chat-bus en route" class="catbus-loader" />
+        </div>
+        
+        <span class="loading-text"><strong>Fetching Ghibli magic...</strong></span>
       </div>
+      
     } @else if (hasMoreCharacters) {
       <button class="btn-fancy-load" (click)="onLoadMore()">
         <span class="btn-text">Discover More</span>
