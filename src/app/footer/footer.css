@@ -1,7 +1,7 @@
 footer {
   background: linear-gradient(90deg, #f7f1e3 0%, #e8efe3 100%);
   box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.06);
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 .panel {
