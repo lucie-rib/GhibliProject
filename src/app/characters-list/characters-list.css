@@ -64,8 +64,30 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-.totoro-loader {
-  width: 80px; 
-  height: auto;
-  margin-bottom: 10px; 
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; 
+}
+
+
+.chase-scene {
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: center;
+  gap: 10px; 
+}
+
+.totoro-loader{
+  height: 60px; 
+  width: auto;
+  display: block; 
+}
+.catbus-loader {
+  height: 40px; 
+  width: auto;
+  display: block; 
 }
