@@ -2,8 +2,10 @@
 <!-- Ce composant est générer par Chagpt a des fin stylisitque, ne fait pas parti du projet-->
 
 <section class="carousel-shell">
+  <!-- Manual previous control. -->
   <button type="button" class="carousel-nav left" (click)="prev()" aria-label="Previous films">&larr;</button>
 
+  <!-- Fan stage reacts to wheel input and renders the computed visible cards. -->
   <div class="fan-stage" (wheel)="onWheel($event)">
     @for (card of visibleCards; track trackVisibleCard($index, card)) {
       <div
@@ -17,6 +19,7 @@
         (mouseleave)="setHovered(null)"
         (click)="select(card.index)"
       >
+        <!-- Draggable tier-list card reused inside carousel layout. -->
         <app-card-tierlist
           [movie_id]="card.movie.id"
           [movie_name]="card.movie.title || card.movie.name"
@@ -27,5 +30,6 @@
     }
   </div>
 
+  <!-- Manual next control. -->
   <button type="button" class="carousel-nav right" (click)="next()" aria-label="Next films">&rarr;</button>
 </section>

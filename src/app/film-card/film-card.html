@@ -1,4 +1,5 @@
 <div class="film_card" [class.film_card--landscape]="!!location_name">
+    <!-- Clickable card preview; switches visual mode when used for locations. -->
     <div class="film_card_image" [class.film_card_image--landscape]="!!location_name" (click)="openDescription()">
         <img [src]="film_image || '/placeholder_film.png'" [alt]="film_title || location_name || 'Card image'">
     </div>
@@ -8,6 +9,7 @@
 </div>
 
 @if (isDescriptionOpen) {
+  <!-- Fullscreen overlay with detailed content for either film or location data. -->
   <div class="overlay" (click)="closeDescription()">
     <article class="film-modal" (click)="$event.stopPropagation()">
       <div class="film-modal__media">

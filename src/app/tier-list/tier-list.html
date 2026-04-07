@@ -1,5 +1,6 @@
 <section class="tier-list-page">
   <h2 class="text-center mb-4 titre">Studio Ghibli Tier List</h2>
+  <!-- Tier board with five dropzones (S to D). -->
   <div class="tier-board">
     <div class="tier-row tier-s">
       <div class="tier-label">S</div>
@@ -11,6 +12,7 @@
         [cdkDropListConnectedTo]="connectedDropLists"
         (cdkDropListDropped)="drop($event)"
       >
+        <!-- Cards currently assigned to S tier. -->
         @for (movie of S_line; track movie.id) {
           <app-card-tierlist
             [movie_id]="movie.id"
@@ -32,6 +34,7 @@
         [cdkDropListConnectedTo]="connectedDropLists"
         (cdkDropListDropped)="drop($event)"
       >
+        <!-- Cards currently assigned to A tier. -->
         @for (movie of A_line; track movie.id) {
           <app-card-tierlist
             [movie_id]="movie.id"
@@ -53,6 +56,7 @@
         [cdkDropListConnectedTo]="connectedDropLists"
         (cdkDropListDropped)="drop($event)"
       >
+        <!-- Cards currently assigned to B tier. -->
         @for (movie of B_line; track movie.id) {
           <app-card-tierlist
             [movie_id]="movie.id"
@@ -74,6 +78,7 @@
         [cdkDropListConnectedTo]="connectedDropLists"
         (cdkDropListDropped)="drop($event)"
       >
+        <!-- Cards currently assigned to C tier. -->
         @for (movie of C_line; track movie.id) {
           <app-card-tierlist
             [movie_id]="movie.id"
@@ -95,6 +100,7 @@
         [cdkDropListConnectedTo]="connectedDropLists"
         (cdkDropListDropped)="drop($event)"
       >
+        <!-- Cards currently assigned to D tier. -->
         @for (movie of D_line; track movie.id) {
           <app-card-tierlist
             [movie_id]="movie.id"
@@ -107,6 +113,7 @@
     </div>
   </div>
 
+  <!-- Bottom carousel is also a drop list and acts as the source movie pool. -->
   <app-carousel-card
     [movies]="movies"
     cdkDropList

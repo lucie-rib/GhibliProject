@@ -8,6 +8,7 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
   styleUrl: './card-tierlist.css',
 })
 export class CardTierlist {
+  // Inputs displayable on the draggable movie card.
   @Input() imageUrl: string = '/placeholder_film.png';
   @Input() movie_name: string = '';
   @Input() movie_id: string = '';

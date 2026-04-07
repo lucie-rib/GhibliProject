@@ -1,3 +1,4 @@
+<!-- Reusable draggable movie card for both carousel pool and tier rows. -->
 <div class="card" cdkDrag [cdkDragData]="dragData || { id: movie_id, title: movie_name, image: imageUrl }">
   <img [src]="imageUrl" [alt]="movie_name" [id]="movie_id">
 </div>

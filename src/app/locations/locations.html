@@ -1,8 +1,10 @@
 <section class="body-section">
 <h2 class="text-center mb-4 titre">All Locations in the Studio Ghibli Collection</h2>
+<!-- Alphabet selector emits a letter used for client-side filtering. -->
 <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
 
   <div class="content-wrapper">
+    <!-- Search form narrows the list by matching location names. -->
     <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="search-form">
       <div class="input-group shadow-sm rounded-pill overflow-hidden border">
         <input 
@@ -28,6 +30,7 @@
         </button>
       </div>
     </form>
+    <!-- List receives both the text-filtered dataset and selected letter. -->
     <app-locations-list [selected_letter]="selectedLetter" [locations]="filteredLocations"></app-locations-list>
   </div>
 </section>

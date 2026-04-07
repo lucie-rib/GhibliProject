@@ -1,5 +1,6 @@
 <div class="column">
 
+  <!-- Main alphabet controls. -->
   @for (letter of letter_array; track letter) {
     <button
       (click)="letter_click(letter)"
@@ -10,6 +11,7 @@
   }
 
 
+  <!-- Shortcut button to remove alphabetical filtering. -->
   <span class="sep">-</span>
   <button (click)="letter_click('All')" [class.active]="false">All</button>
   

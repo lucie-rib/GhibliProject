@@ -1,7 +1,9 @@
 <section class="movies-section">
   <div class="row">
+    <!-- Renders one card per filtered location. -->
     @for (location of selectedLocations(); track location.id) {
         <div class="col d-flex justify-content-center">
+            <!-- Child display emits clicks and receives one location payload. -->
             <app-locations-display [location]="location" (locationClicked)="onLocationClicked($event)"></app-locations-display>
         </div>
     }

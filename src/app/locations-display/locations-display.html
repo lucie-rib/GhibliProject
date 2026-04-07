@@ -1,5 +1,6 @@
 <div class="movie-item">
   <div class="movie-content">
+    <!-- Reuse the generic card component with location-specific inputs. -->
     <app-film-card
       [film_image]="locationImageUrl"
       [location_name]="sanitizeLocationField(location.name)"

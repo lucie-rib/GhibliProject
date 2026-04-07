@@ -24,35 +24,45 @@ type VisibleCard = {
   styleUrl: './carousel-card.css',
 })
 export class CarouselCard {
+  // Incoming pool of movies displayed in the fan-style carousel.
   @Input() movies: any[] = [];
 
+  // Index of the currently centered/active card.
   activeIndex = 0;
+  // Card currently hovered to slightly boost its visual prominence.
   hoveredIndex: number | null = null;
+  // Number of cards shown on each side around the active one.
   readonly visibleRadius = 4;
+  // Wheel smoothing state to avoid jumping too fast on trackpads.
   private wheelDeltaBuffer = 0;
   private lastWheelStepAt = 0;
   private readonly wheelThreshold = 34;
   private readonly wheelCooldownMs = 190;
 
   prev(): void {
+    // Move one card backward with circular wrap-around.
     if (this.movies.length === 0) return;
     this.activeIndex = (this.activeIndex - 1 + this.movies.length) % this.movies.length;
   }
 
   next(): void {
+    // Move one card forward with circular wrap-around.
     if (this.movies.length === 0) return;
     this.activeIndex = (this.activeIndex + 1) % this.movies.length;
   }
 
   select(index: number): void {
+    // Click-to-focus behavior on a specific visible card.
     this.activeIndex = index;
   }
 
   setHovered(index: number | null): void {
+    // Tracks hover state for style emphasis.
     this.hoveredIndex = index;
   }
 
   onWheel(event: WheelEvent): void {
+    // Converts wheel gestures into carousel navigation with threshold + cooldown.
     if (!this.movies.length) return;
     event.preventDefault();
 
@@ -78,6 +88,7 @@ export class CarouselCard {
   }
 
   get visibleCards(): VisibleCard[] {
+    // Computes style-ready card descriptors around the current active index.
     if (!this.movies.length) return [];
 
     const cards: VisibleCard[] = [];
@@ -95,6 +106,7 @@ export class CarouselCard {
   }
 
   cardStyle(offset: number, index: number): FanCardStyle {
+    // Builds fan layout transforms (position, rotation, scale, layering, opacity).
     const absOffset = Math.abs(offset);
     const maxVisible = this.visibleRadius + 1;
     const translateX = offset * 84;
@@ -114,23 +126,28 @@ export class CarouselCard {
   }
 
   trackVisibleCard = (_: number, item: VisibleCard): string => {
+    // Stable tracking key for Angular @for rendering.
     return String(item.movie?.id ?? item.index);
   };
 
   isCardHidden(offset: number): boolean {
+    // Hide cards outside the extra buffer radius.
     return Math.abs(offset) > this.visibleRadius + 1;
   }
 
   isCardHovered(index: number): boolean {
+    // Utility used by template class bindings.
     return this.hoveredIndex === index;
   }
 
   private wrapIndex(index: number): number {
+    // Keeps an index inside movie array bounds.
     const length = this.movies.length;
     return ((index % length) + length) % length;
   }
 
   private circularOffset(index: number, active: number, length: number): number {
+    // Returns the shortest signed distance between two indices in a circular list.
     let diff = index - active;
     if (diff > length / 2) diff -= length;
     if (diff < -length / 2) diff += length;
