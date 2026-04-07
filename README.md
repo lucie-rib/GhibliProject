@@ -82,4 +82,5 @@ L'application est découpée en plusieurs modules intuitifs :
 
 ## **📝 Auteurs**
 
-Projet réalisé dans le cadre d'un module de développement Web.
+Projet réalisé dans le cadre du cours de Webdev du S8
+Par MORATILLE Marco, REVEST Matteo et RIBERO Lucie

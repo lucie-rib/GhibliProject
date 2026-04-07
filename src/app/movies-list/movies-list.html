@@ -1,9 +1,26 @@
-<section class="movies-section">
+<!-- Section that contains the list of movies -->
+<section class="movies-section"> 
+  
+  <!-- Row container (Bootstrap layout) -->
   <div class="row">
+
+    <!-- Loop through the selected movies list -->
+    <!-- "track movie.id" helps Angular optimize rendering -->
     @for (movie of selectedMovies(); track movie.id) {
-        <div class="col d-flex justify-content-center">
-            <app-movie-display [movie]="movie" (movieClicked)="onMovieClicked($event)"></app-movie-display>
+
+        <!-- Column that centers its content -->
+        <div class="col d-flex justify-content-center"> 
+
+            <!-- Custom component to display a movie -->
+            <!-- [movie] passes the movie data as input -->
+            <!-- (movieClicked) listens for a click event and calls a method -->
+            <app-movie-display 
+              [movie]="movie" 
+              (movieClicked)="onMovieClicked($event)">
+            </app-movie-display> 
+
         </div>
     }
+
   </div>
 </section>

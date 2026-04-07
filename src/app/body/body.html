@@ -1,37 +1,60 @@
 <section class="body-section">
+
+  <!-- Page title -->
   <h2 class="text-center mb-4 titre">All movies in the Studio Ghibli Collection</h2>
+
+  <!-- Component that emits a selected letter -->
   <app-letter-selector (emitted_letter)="onLetterSelected($event)"></app-letter-selector>
 
-    <div class="content-wrapper">
-       <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="search-form">
-        <div class="input-group shadow-sm rounded-pill overflow-hidden border">
-          <input 
-            class="form-control border-0 py-2 px-4 bg-white text-dark search-field" 
-            [formControl]="searchControl" 
-            placeholder="Research a film..."
-          >
-          <button 
-            type="button" 
-            class="clear-btn" 
-            (click)="reset()"
-            [disabled]="!searchControl.value.trim()"
-            aria-label="Clear search">
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M5 5 L15 15 M15 5 L5 15"></path>
-            </svg>
-          </button>
-          <button 
-            class="btn btn-dark px-4 fw-bold search-submit" 
-            type="submit" 
-            [disabled]="searchGroup.invalid">
-            Search
-          </button>
-        </div>
-      </form>
-      <app-movies-list [selected_letter]="selectedLetter" [movies]="filteredMovies"></app-movies-list>
-    </div>
+  <div class="content-wrapper">
 
-    <div class="susuwatari-runner" aria-hidden="true">
-      <img src="/susuwatari-run.gif" alt="" class="susuwatari-runner__gif">
-    </div>
+    <!-- Search form linked to a reactive form group -->
+    <form (ngSubmit)="submit()" [formGroup]="searchGroup" class="search-form">
+
+      <div class="input-group shadow-sm rounded-pill overflow-hidden border">
+
+        <!-- Input linked to searchControl -->
+        <input 
+          class="form-control border-0 py-2 px-4 bg-white text-dark search-field" 
+          [formControl]="searchControl" 
+          placeholder="Research a film..."
+        >
+
+        <!-- Button to clear the input -->
+        <button 
+          type="button" 
+          class="clear-btn" 
+          (click)="reset()"
+          [disabled]="!searchControl.value.trim()"
+          aria-label="Clear search">
+
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M5 5 L15 15 M15 5 L5 15"></path>
+          </svg>
+        </button>
+
+        <!-- Submit button (disabled if form is invalid) -->
+        <button 
+          class="btn btn-dark px-4 fw-bold search-submit" 
+          type="submit" 
+          [disabled]="searchGroup.invalid">
+          Search
+        </button>
+
+      </div>
+    </form>
+
+    <!-- Component displaying filtered movies -->
+    <app-movies-list 
+      [selected_letter]="selectedLetter" 
+      [movies]="filteredMovies">
+    </app-movies-list>
+
+  </div>
+
+  <!-- Decorative animated element -->
+  <div class="susuwatari-runner" aria-hidden="true">
+    <img src="/susuwatari-run.gif" alt="" class="susuwatari-runner__gif">
+  </div>
+
 </section>
