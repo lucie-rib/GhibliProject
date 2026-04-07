@@ -1,6 +1,6 @@
-<div class="movie-item">
+<div class="movie-item"> <!-- Movie item container -->
   <div class="movie-content">
-    <app-film-card
+    <app-film-card 
       [film_title]="movie.title"
       [film_image]="movie.image"
       [film_description]="movie.description"
@@ -8,6 +8,6 @@
       [film_director]="movie.director"
       [film_release_date]="movie.release_date"
       [film_rate]="movie.rt_score"
-    ></app-film-card>
+    ></app-film-card> <!-- Film card component that displays the movie information in a card format. It receives the movie data as input properties. -->
   </div>
 </div>

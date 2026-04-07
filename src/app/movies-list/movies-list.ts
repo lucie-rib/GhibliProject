@@ -4,49 +4,48 @@ import { Data } from '../data';
 
 @Component({
   selector: 'app-movies-list',
-  imports: [MovieDisplay],
+  imports: [MovieDisplay], // Import the MovieDisplay component to be used within this component's template.
   templateUrl: './movies-list.html',
   styleUrl: './movies-list.css',
 })
 export class MoviesList {
-  @Input() selected_letter : string = ""
+  @Input() selected_letter : string = "" 
   @Input() movies: any[] = [];
 
   dataService = inject(Data);
   
   selectedMovie: string = '';
 
-  ngOnInit() : void { 
-    if (this.movies.length === 0) {
-      console.log('1 - ngOnInit called');
-      this.dataService.getMovies().subscribe(movies => {
-        console.log('2 - Movies received from service');
-        this.movies = movies;
-      })
-      console.log('3 - ngOnInit finished');
-    }
-  }
-
-  selectedMovies(){
-    if (!this.selected_letter){
-      return this.movies;
-    }
-
-    if(this.selected_letter == 'All'){
-      return this.movies;
-    }
-
-    return this.movies.filter((movie) => {
-      return movie.title?.toUpperCase().startsWith(this.selected_letter)
+  // Called when the component is initialized
+ngOnInit() : void { 
+  // If no movies are provided, fetch them from the service
+  if (this.movies.length === 0) {
+    this.dataService.getMovies().subscribe(movies => {
+      this.movies = movies; // Save the received movies
     })
   }
-  
-  onSelected(movieName: string) {
-    this.selectedMovie = movieName;
+}
+
+// Returns the list of movies filtered by the selected letter
+selectedMovies(){
+  // If no filter or "All", return all movies
+  if (!this.selected_letter || this.selected_letter == 'All'){
+    return this.movies;
   }
 
-  onMovieClicked(movieName: string) {
-    console.log('Movie clicked :' + movieName);
-    this.onSelected(movieName);
-  }
+  // Otherwise, filter movies by first letter of title
+  return this.movies.filter((movie) => {
+    return movie.title?.toUpperCase().startsWith(this.selected_letter)
+  })
+}
+
+// Updates the selected movie
+onSelected(movieName: string) {
+  this.selectedMovie = movieName;
+}
+
+// Called when a movie is clicked
+onMovieClicked(movieName: string) {
+  this.onSelected(movieName); // Set the selected movie
+}
 }
