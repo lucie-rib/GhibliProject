@@ -19,25 +19,13 @@ cd GhibliProject
 npm install
 ```
 
-### **3. Installer Bootstrap**
-
-```bash
-npm install bootstrap
-```
-
-### **4. Installer `@angular/cdk`**
-
-```bash
-ng add @angular/cdk
-```
-
-### **5. Lancer le serveur de développement**
+### **3. Lancer le serveur de développement**
 
 ```bash
 ng serve
 ```
 
-### **6. Accéder à l'application**
+### **4. Accéder à l'application**
 
 Ouvrez votre navigateur à l'adresse suivante :  
 `http://localhost:4200`
