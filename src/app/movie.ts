@@ -1,4 +1,5 @@
-export interface Movie {
+export interface Movie {// This interface defines the structure of*
+//  a movie object in the application.
     id: string;
     title: string;
     original_title: string;

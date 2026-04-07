@@ -1,4 +1,4 @@
-export interface Character {
+export interface Character { // This interface defines the structure of a character object in the application.
     id: string;
     name: string;
     gender: string;
@@ -9,4 +9,4 @@ export interface Character {
     species: string;
     images: string[];
     url: string;
-}
+} 

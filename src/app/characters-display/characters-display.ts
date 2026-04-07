@@ -10,10 +10,12 @@ import { CharacterCard } from '../character-card/character-card';
   styleUrl: './characters-display.css',
 })
 export class CharactersDisplay {
-  @Input() character!: Character;
-  @Output() characterClicked = new EventEmitter<string>();
+  @Input() character!: Character; // The character data passed from the parent component
+  @Output() characterClicked = new EventEmitter<string>();// Event emitter that emits 
+  // the character's name when the character card is clicked
 
-  onCharacterClicked() {
+  onCharacterClicked() {// This method is called when the user clicks 
+  // on the character card.
     console.log('Character clicked:', this.character.name);
     this.characterClicked.emit(this.character.name);
   }

@@ -1,3 +1,5 @@
-<div (click)="onCharacterClicked()">
+<div (click)="onCharacterClicked()"> <!-- Container for the character card. 
+    When clicked, it triggers the onCharacterClicked method 
+    to emit the character's name to the parent component. -->
     <app-character-card [character]="character"></app-character-card>
 </div>

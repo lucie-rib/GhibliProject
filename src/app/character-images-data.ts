@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, map, catchError, shareReplay, switchMap } from 'rxjs';
 //This file uses another api to get the images just to make it fancier.
 
+// This service fetches character images from the Studio Ghibli Fandom wiki
+// to provide  images for each character in the application because the ghibli
+// api does not provide character images.
+
+
 interface FandomQueryResponse {
   query?: {
     pages?: Record<

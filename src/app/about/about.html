@@ -22,9 +22,11 @@
           <p class="text-muted fw-italic">
             <i class="bi bi-heart-fill text-danger"></i> Made with love by <strong>Lucie, Marco and Matteo</strong>
           </p>
-        </div> </div> <div class="col-lg-6 text-center position-relative">
+        </div>
+      </div> 
+      
+      <div class="col-lg-6 text-center position-relative">
         <div class="totoro-container position-relative">
-          
           <img 
             src="totoro.png" 
             alt="Totoro" 
@@ -36,14 +38,12 @@
           
           <div class="speech-bubble text-success fw-bold shadow-sm p-3 rounded-4 position-absolute" 
                [class.show]="reactionMessage && isTotoroReacting">
-            {{ reactionMessage }}
+            {{ reactionMessage }} @if (patCount > 0) {
+              <p class="pat-counter text-muted mt-3">
+                Totoro has been patted <span class="fw-bold text-success">{{ patCount }}</span> times!
+              </p>
+            }
           </div>
-
-          @if (patCount > 0) {
-            <p class="pat-counter text-muted mt-3">
-              Totoro has been patted <span class="fw-bold text-success">{{ patCount }}</span> times!
-            </p>
-          }
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 <div class="character-card" (click)="toggleDescription()" role="button" tabindex="0" title="Click to see details">
   <div class="card-header">
     <span class="species-badge">{{ character.species | titlecase }}</span>
+    <!-- Gender icon with dynamic styling based on the character's gender -->
     <span class="gender-icon" [attr.data-gender]="character.gender.toLowerCase()">
       @if (character.gender.toLowerCase() === 'female') { ♀️ }
       @else if (character.gender.toLowerCase() === 'male') { ♂️ }
@@ -8,12 +9,13 @@
     </span>
   </div>
 
-  <div class="card-body">
+  <div class="card-body"> <!-- Display the character's image if available, otherwise show a placeholder -->
     @if (character.images && character.images.length > 0) {
       <div class="image-container">
         <img [src]="character.images[0]" [alt]="character.name" class="character-image">
       </div>
     }
+    <!-- Character's name displayed prominently on the card -->
     <h3 class="character-name">{{ character.name }}</h3>
   </div>
 
@@ -21,7 +23,7 @@
     <button class="btn-details">View Details</button>
   </div>
 </div>
-
+<!-- Modal overlay that appears when the character card is clicked, showing detailed information about the character -->
 @if (isDescriptionOpen) {
   <div class="overlay" (click)="toggleDescription()">
     <article class="details-modal" (click)="$event.stopPropagation()">

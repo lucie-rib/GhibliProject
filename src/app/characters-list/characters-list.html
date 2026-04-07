@@ -1,5 +1,7 @@
 <section class="characters-section">
-  <div class="row">
+  <div class="row"> <!-- Loop through the list of characters and display each character 
+    using the CharactersDisplay component. -->
+
     @for (character of characters; track character.id) {
         <div class="col d-flex justify-content-center mb-4">
             <app-characters-display 
@@ -10,11 +12,14 @@
     }
   </div>
 
-  <div class="pagination-footer">
+  <div class="pagination-footer"> <!-- Display a loading indicator if the component 
+    is currently loading more characters. 
+    If there are more characters to load, display a "Load More" 
+    button that allows the user to load more characters when clicked. -->
     @if (isLoading) {
       <div class="loader-container">
         
-        <div class="chase-scene">
+        <div class="chase-scene"> <!-- A fun loading animation featuring Totoro and the Catbus.-->
           <img src="/LoadingTotoro.webp" alt="Chargement Totoro" class="totoro-loader" />
           <img src="/LoadingCatBus.webp" alt="Chat-bus en route" class="catbus-loader" />
         </div>
@@ -22,7 +27,8 @@
         <span class="loading-text"><strong>Fetching Ghibli magic...</strong></span>
       </div>
       
-    } @else if (hasMoreCharacters) {
+    } @else if (hasMoreCharacters) { <!-- If there are more characters to load, 
+      display a "Load More" button. -->
       <button class="btn-fancy-load" (click)="onLoadMore()">
         <span class="btn-text">Discover More</span>
       </button>

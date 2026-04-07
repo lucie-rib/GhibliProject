@@ -10,11 +10,11 @@ import { Character } from '../character';
   styleUrl: './character-card.css',
 })
 export class CharacterCard {
-  @Input() character!: Character;
+  @Input() character!: Character; // The character data passed from the parent component
 
-  isDescriptionOpen: boolean = false;
+  isDescriptionOpen: boolean = false; // Controls whether the character's description is currently expanded or collapsed
 
-  toggleDescription() {
+  toggleDescription() { // This method is called when the user clicks the button to toggle the character's description.
     this.isDescriptionOpen = !this.isDescriptionOpen;
   }
 }
